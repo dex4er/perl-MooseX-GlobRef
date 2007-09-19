@@ -12,7 +12,8 @@ SYNOPSIS
 
       sub open {
         my $fh = shift;
-        open $fh, $fh->filename or confess "cannot open";
+        my $hashref = ${*$fh};
+        open $fh, $hashref->{filename} or confess "cannot open";
         return $fh;
       }
 
@@ -30,7 +31,10 @@ SYNOPSIS
   
 DESCRIPTION
     This meta-policy allows to store Moose object in glob reference or file
-    handle. It allows to create a Moose version of IO::Handle.
+    handle. The class attributes will be stored in anonymous hash associated
+    with glob reference. It allows to create a Moose version of IO::Handle.
+
+    The elements of hash can be accessed with ${*$self}->{key} expression.
 
     You can use MooseX::GlobRef::Meta::Instance metaclass directly if you
     need more customised configuration.

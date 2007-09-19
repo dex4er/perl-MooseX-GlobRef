@@ -20,7 +20,8 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
   sub open {
     my $fh = shift;
-    open $fh, $fh->filename or confess "cannot open";
+    my $hashref = ${*$fh};
+    open $fh, $hashref->{filename} or confess "cannot open";
     return $fh;
   }
 
@@ -39,7 +40,10 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 =head1 DESCRIPTION
 
 This meta-policy allows to store Moose object in glob reference or file
-handle.  It allows to create a Moose version of F<IO::Handle>.
+handle.  The class attributes will be stored in anonymous hash associated
+with glob reference.  It allows to create a Moose version of F<IO::Handle>.
+
+The elements of hash can be accessed with B<${*$self}-E<gt>{key}> expression.
 
 You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
 more customised configuration.

@@ -21,7 +21,8 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 
   sub open {
     my $fh = shift;
-    open $fh, $fh->filename or confess "cannot open";
+    my $hashref = ${*$fh};
+    open $fh, $hashref->{filename} or confess "cannot open";
     return $fh;
   }
 

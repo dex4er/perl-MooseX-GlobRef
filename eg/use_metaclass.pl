@@ -11,7 +11,8 @@ has 'filename' => ( is => 'ro', isa => 'Str', required => 1 );
 
 sub open {
   my $fh = shift;
-  open $fh, $fh->filename or confess "cannot open";
+  my $hashref = ${*$fh};
+  open $fh, $hashref->{filename} or confess "cannot open";
   return $fh;
 }
 
