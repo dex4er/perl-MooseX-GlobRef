@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Class;
 use 5.006;
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 =head1 NAME 
 
@@ -45,7 +45,7 @@ Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
 
 =head1 LICENSE
 
-Copyright 2006-2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

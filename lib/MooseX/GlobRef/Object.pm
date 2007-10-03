@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Object;
 use 5.006;
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 =head1 NAME 
 
@@ -62,6 +62,8 @@ extends 'Moose::Object';
 
 __END__
 
+=for readme stop
+
 =head1 BASE CLASSES
 
 =over 2
@@ -77,13 +79,15 @@ L<Moose::Object>
 L<MooseX::GlobRef::Meta::Instance>, L<MooseX::GlobRef::Meta::Class>,
 L<Moose>, L<metaclass>.
 
+=for readme continue
+
 =head1 AUTHOR
 
 Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
 
 =head1 LICENSE
 
-Copyright 2006-2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

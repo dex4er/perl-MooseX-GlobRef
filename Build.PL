@@ -19,7 +19,7 @@ my $build = Module::Build->new(
         'Test::Unit::Lite'   => 0,
     },
     create_makefile_pl => 'traditional',
-    # create_readme => 1,
+    create_readme => 1,
     recursive_test_files => 1,
     add_to_cleanup => [
         'META.yml', '*.bak', '*.gz', 'Makefile.PL', 'Makefile', 'pm_to_blib', 'cover_db',

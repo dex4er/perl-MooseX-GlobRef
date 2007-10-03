@@ -1,4 +1,13 @@
 ------------------------------------------------------------------------
+0.02 | Piotr Roszatycki <dexter@debian.org> | 2007-10-03
+
+* New overrided methods: deinitialize_slot, is_slot_initialized,
+  weaken_slot_value.
+* New test units.
+* Fix version number for MooseX::GlobRef::Meta::Instance module.
+* Build README with Module::Build.
+
+------------------------------------------------------------------------
 0.01 | Piotr Roszatycki <dexter@debian.org> | 2007-09-27
 
 * First CPAN release.

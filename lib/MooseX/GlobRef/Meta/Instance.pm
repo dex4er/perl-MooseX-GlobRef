@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Instance;
 use 5.006;
-our $VERSION = 1;
+our $VERSION = 0.02;
 
 =head1 NAME 
 
@@ -76,6 +76,21 @@ sub set_slot_value {
     return ${*$instance}->{$slot_name} = $value;
 }
 
+sub deinitialize_slot {
+    my ( $self, $instance, $slot_name ) = @_;
+    delete ${*$instance}->{$slot_name};
+}
+
+sub is_slot_initialized {
+    my ($self, $instance, $slot_name) = @_;
+    exists ${*$instance}->{$slot_name} ? 1 : 0;
+}
+
+sub weaken_slot_value {
+    my ($self, $instance, $slot_name) = @_;
+    Scalar::Util::weaken ${*$instance}->{$slot_name};
+}
+
 sub inline_create_instance {
     my ($self, $class_variable) = @_;
     return 'select select my $fh; ${*$fh} = {}; bless $fh => ' . $class_variable;
@@ -111,6 +126,12 @@ L<Moose::Meta::Instance>
 
 =item set_slot_value
 
+=item deinitialize_slot
+
+=item is_slot_initialized
+
+=item weaken_slot_value
+
 =item inline_create_instance
 
 =item inline_slot_access
@@ -129,7 +150,7 @@ Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
 
 =head1 LICENSE
 
-Copyright 2006-2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
