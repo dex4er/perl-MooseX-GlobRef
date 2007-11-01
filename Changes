@@ -1,4 +1,9 @@
 ------------------------------------------------------------------------
+0.0201 | Piotr Roszatycki <dexter@debian.org> | 2007-11-01
+
+* Build requires Test::Unit::Lite >= 0.07.
+
+------------------------------------------------------------------------
 0.02 | Piotr Roszatycki <dexter@debian.org> | 2007-10-03
 
 * New overrided methods: deinitialize_slot, is_slot_initialized,
