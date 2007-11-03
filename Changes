@@ -1,4 +1,11 @@
 ------------------------------------------------------------------------
+0.0202 | Piotr Roszatycki <dexter@debian.org> | 2007-11-03
+
+Fixes:
+
+* Do not use Exception::Base for tests.
+
+------------------------------------------------------------------------
 0.0201 | Piotr Roszatycki <dexter@debian.org> | 2007-11-01
 
 * Build requires Test::Unit::Lite >= 0.07.
