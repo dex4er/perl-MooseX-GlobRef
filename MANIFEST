@@ -14,6 +14,9 @@ t/cover.sh
 t/pod.t
 t/pod_coverage.t
 t/test.pl
+t/tlib/MooseX/GlobRef/Meta/ClassImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassTest.pm
+t/tlib/MooseX/GlobRef/Meta/InstanceImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceTest.pm
+t/tlib/MooseX/GlobRef/ObjectImmutableTest.pm
 t/tlib/MooseX/GlobRef/ObjectTest.pm

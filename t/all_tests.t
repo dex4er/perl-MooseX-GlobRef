@@ -3,7 +3,16 @@
 use strict;
 use warnings;
 
-use lib 'inc', 'lib';
+use File::Spec;
+use Cwd;
+
+BEGIN {
+    unshift @INC, map { /(.*)/; $1 } split(/:/, $ENV{PERL5LIB}) if ${^TAINT};
+
+    my $cwd = ${^TAINT} ? do { local $_=getcwd; /(.*)/; $1 } : '.';
+    unshift @INC, File::Spec->catdir($cwd, 'inc');
+    unshift @INC, File::Spec->catdir($cwd, 'lib');
+}
 
 use Test::Unit::Lite;
 

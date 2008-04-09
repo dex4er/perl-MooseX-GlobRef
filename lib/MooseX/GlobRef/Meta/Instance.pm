@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Instance;
 use 5.006;
-our $VERSION = 0.02;
+our $VERSION = 0.02_03;
 
 =head1 NAME 
 
@@ -49,9 +49,10 @@ Notice, that "use metaclass" have to be before "use Moose".
 =cut
 
 
-use Moose;
+use strict;
+use warnings;
 
-extends 'Moose::Meta::Instance';
+use base 'Moose::Meta::Instance';
 
 
 sub create_instance {

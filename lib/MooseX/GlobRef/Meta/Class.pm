@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Class;
 use 5.006;
-our $VERSION = 0.02;
+our $VERSION = 0.02_03;
 
 =head1 NAME 
 
@@ -16,9 +16,11 @@ other purposes and funcionality.
 =cut
 
 
-use Moose;
+use strict;
+use warnings;
 
-extends 'Moose::Meta::Class';
+use base 'Moose::Meta::Class';
+
 
 1;
 

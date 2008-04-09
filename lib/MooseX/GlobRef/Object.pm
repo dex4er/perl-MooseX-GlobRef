@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Object;
 use 5.006;
-our $VERSION = 0.02_02;
+our $VERSION = 0.02_03;
 
 =head1 NAME 
 
@@ -54,8 +54,8 @@ more customised configuration.
 use metaclass 'MooseX::GlobRef::Meta::Class' =>
     instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
 
-use Moose;
-extends 'Moose::Object';
+use base 'Moose::Object';
+
 
 1;
 
