@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------
 0.03 | Piotr Roszatycki <dexter@debian.org> | 2008-12-08
 
-* 
+* Requires parent module instead base.
 
 ------------------------------------------------------------------------
 0.0203 | Piotr Roszatycki <dexter@debian.org> | 2008-04-09

@@ -30,7 +30,7 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
     return readline $fh;
   }
 
-  my $io = new My::IO filename=>'/etc/passwd';
+  my $io = My::IO->new( filename=>'/etc/passwd' );
   print "::::::::::::::\n";
   print $io->filename, "\n";
   print "::::::::::::::\n";
@@ -41,9 +41,9 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
 This meta-policy allows to store Moose object in glob reference or file
 handle.  The class attributes will be stored in anonymous hash associated
-with glob reference.  It allows to create a Moose version of F<IO::Handle>.
+with glob reference.  It allows to create a Moose version of L<IO::Handle>.
 
-The elements of hash can be accessed with B<${*$self}-E<gt>{key}> expression.
+The elements of hash can be accessed with C<${*$self}-E<gt>{key}> expression.
 
 You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
 more customised configuration.
@@ -54,7 +54,7 @@ more customised configuration.
 use metaclass 'MooseX::GlobRef::Meta::Class' =>
     instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
 
-use base 'Moose::Object';
+use parent 'Moose::Object';
 
 
 1;

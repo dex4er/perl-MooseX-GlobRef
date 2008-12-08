@@ -13,6 +13,7 @@ my $build = Module::Build->new(
     requires => {
         'perl'               => 5.006,
         'Moose'              => 0,
+        'parent'             => 0,
     },
     optional => {
     },

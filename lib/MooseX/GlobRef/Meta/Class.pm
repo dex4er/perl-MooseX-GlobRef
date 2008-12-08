@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Class;
 use 5.006;
-our $VERSION = 0.02_03;
+our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -19,7 +19,7 @@ other purposes and funcionality.
 use strict;
 use warnings;
 
-use base 'Moose::Meta::Class';
+use parent 'Moose::Meta::Class';
 
 
 1;
