@@ -1,29 +1,31 @@
 package MooseX::GlobRef::ObjectImmutableTest;
 
-use base 'Test::Unit::TestCase';
+use parent 'Test::Unit::TestCase';
 
 use Scalar::Util;
 
 
-package MooseX::GlobRef::ObjectImmutableTest::Test1;
+{
+    package MooseX::GlobRef::ObjectImmutableTest::Test1;
 
-use Moose;
+    use Moose;
 
-extends 'MooseX::GlobRef::Object';
+    extends 'MooseX::GlobRef::Object';
 
-has field =>
-    is      => 'rw',
-    clearer => 'clear_field',
-    default => 'default',
-    lazy    => 1;
+    has field => (
+        is      => 'rw',
+        clearer => 'clear_field',
+        default => 'default',
+        lazy    => 1,
+    );
+    
+    has weak_field => (
+        is      => 'rw',
+    );
 
-has weak_field =>
-    is      => 'rw';
+    __PACKAGE__->meta->make_immutable;
+};
 
-__PACKAGE__->meta->make_immutable;
-
-
-package MooseX::GlobRef::ObjectImmutableTest;
 
 sub test_MooseX_GlobRef_Object___isa {
     my $self = shift;
@@ -32,7 +34,7 @@ sub test_MooseX_GlobRef_Object___isa {
     $self->assert($obj->isa('MooseX::GlobRef::ObjectImmutableTest::Test1'));
     $self->assert_equals('GLOB', Scalar::Util::reftype($obj));
     $self->assert_equals('HASH', Scalar::Util::reftype(${*$obj}));
-}
+};
 
 sub test_MooseX_GlobRef_Object__moose {
     my $self = shift;
@@ -44,7 +46,7 @@ sub test_MooseX_GlobRef_Object__moose {
     $self->assert_equals(1, $obj->field);
     $self->assert($obj->clear_field);
     $self->assert_equals('default', $obj->field);
-}
+};
 
 sub test_MooseX_GlobRef_Object__moc {
     my $self = shift;
@@ -62,7 +64,7 @@ sub test_MooseX_GlobRef_Object__moc {
     $self->assert($mi->deinitialize_slot($obj, 'field'));
     $self->assert_null($mi->get_slot_value($obj, 'field'));
     $self->assert(! $mi->is_slot_initialized($obj, 'field'));
-}
+};
 
 sub test_MooseX_GlobRef_Object__moc_inline {
     my $self = shift;
@@ -91,7 +93,7 @@ sub test_MooseX_GlobRef_Object__moc_inline {
     $self->assert(eval $code_deinitialize_slot);
     $self->assert_null(eval $code_get_slot_value);
     $self->assert(! eval $code_is_slot_initialized);
-}
+};
 
 sub test_MooseX_GlobRef_Object__weak {
     my $self = shift;
@@ -107,8 +109,8 @@ sub test_MooseX_GlobRef_Object__weak {
 	$self->assert_not_null($obj->weak_field);
 	$self->assert_equals('SCALAR', ${$obj->weak_field});
 	$mi->weaken_slot_value($obj, 'weak_field');
-    }
+    };
     $self->assert_null($obj->weak_field);
-}
+};
 
 1;

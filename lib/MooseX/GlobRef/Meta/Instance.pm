@@ -65,42 +65,50 @@ sub create_instance {
     ${*$fh} = {};
 
     return bless $fh => $self->associated_metaclass->name;
-}
+};
+
 
 sub get_slot_value {
     my ($self, $instance, $slot_name) = @_;
     return ${*$instance}->{$slot_name};
-}
+};
+
 
 sub set_slot_value {
     my ($self, $instance, $slot_name, $value) = @_;
     return ${*$instance}->{$slot_name} = $value;
-}
+};
+
 
 sub deinitialize_slot {
     my ( $self, $instance, $slot_name ) = @_;
     delete ${*$instance}->{$slot_name};
-}
+};
+
 
 sub is_slot_initialized {
     my ($self, $instance, $slot_name) = @_;
     exists ${*$instance}->{$slot_name} ? 1 : 0;
-}
+};
+
 
 sub weaken_slot_value {
     my ($self, $instance, $slot_name) = @_;
     Scalar::Util::weaken ${*$instance}->{$slot_name};
-}
+};
+
 
 sub inline_create_instance {
     my ($self, $class_variable) = @_;
     return 'select select my $fh; ${*$fh} = {}; bless $fh => ' . $class_variable;
-}
+};
+
 
 sub inline_slot_access {
     my ($self, $instance, $slot_name) = @_;
     return sprintf '${*{%s}}->{%s}', $instance, $slot_name;
-}
+};
+
 
 1;
 

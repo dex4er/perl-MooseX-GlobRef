@@ -51,8 +51,9 @@ more customised configuration.
 =cut
 
 
-use metaclass 'MooseX::GlobRef::Meta::Class' =>
-    instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
+use metaclass 'MooseX::GlobRef::Meta::Class' => (
+    instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
+);
 
 use parent 'Moose::Object';
 
