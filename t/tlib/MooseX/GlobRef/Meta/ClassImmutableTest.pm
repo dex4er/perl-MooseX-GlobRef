@@ -1,8 +1,9 @@
 package MooseX::GlobRef::Meta::ClassImmutableTest;
 
 use parent 'Test::Unit::TestCase';
+use Test::Assert ':all';
 
-use Scalar::Util;
+use Scalar::Util 'reftype';
 
 
 {
@@ -24,19 +25,19 @@ use Scalar::Util;
 sub test_MooseX_GlobRef_Meta_Class___isa {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::ClassImmutableTest::Test1->new;
-    $self->assert_not_null($obj);
-    $self->assert($obj->isa('MooseX::GlobRef::Meta::ClassImmutableTest::Test1'));
-    $self->assert_equals('HASH', Scalar::Util::reftype($obj));
+    assert_not_null($obj);
+    assert_true($obj->isa('MooseX::GlobRef::Meta::ClassImmutableTest::Test1'));
+    assert_equals('HASH', reftype($obj));
 };
 
 sub test_MooseX_GlobRef_Meta_Class_accessor {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::ClassImmutableTest::Test1->new(field => $$);
-    $self->assert_not_null($obj);
-    $self->assert($obj->isa('MooseX::GlobRef::Meta::ClassImmutableTest::Test1'));
-    $self->assert_equals($$, $obj->field);
-    $self->assert_equals(1, $obj->field(1));
-    $self->assert_equals(1, $obj->field);
+    assert_not_null($obj);
+    assert_true($obj->isa('MooseX::GlobRef::Meta::ClassImmutableTest::Test1'));
+    assert_equals($$, $obj->field);
+    assert_equals(1, $obj->field(1));
+    assert_equals(1, $obj->field);
 };
 
 1;
