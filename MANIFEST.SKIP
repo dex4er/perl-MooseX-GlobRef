@@ -11,7 +11,6 @@
 \bMakeMaker-\d
 \bpm_to_blib$
 \bblibdirs$
-^MANIFEST\.SKIP$
 
 # Avoid Module::Build generated and utility files.
 \bBuild$
@@ -36,4 +35,8 @@
 #   Mac OSX SMB mount metadata files
 \B\._
 # Avoid archives of this distribution
+\.gz$
+\.ppd$
+\.tgz$
+\.deb$
 \bMooseX-GlobRef-Object-

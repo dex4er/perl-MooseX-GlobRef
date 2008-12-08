@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Object;
 use 5.006;
-our $VERSION = 0.02_03;
+our $VERSION = 0.03;
 
 =head1 NAME 
 
