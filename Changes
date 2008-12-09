@@ -1,6 +1,15 @@
 ------------------------------------------------------------------------
 0.03 | Piotr Roszatycki <dexter@debian.org> | 2008-12-08
 
+New:
+
+* Implemented also as class trait:
+
+  package My::Class;
+  use Moose -traits => 'GlobRef';
+
+Changes:
+
 * Requires parent module instead base.
 * Build requires Test::Assert.
 

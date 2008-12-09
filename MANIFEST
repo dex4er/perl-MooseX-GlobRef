@@ -2,7 +2,9 @@ Build.PL
 Changes
 eg/extends_object.pl
 eg/use_metaclass.pl
+lib/Moose/Meta/Class/Custom/Trait/GlobRef.pm
 lib/MooseX/GlobRef/Meta/Class.pm
+lib/MooseX/GlobRef/Meta/Class/Trait/GlobRef.pm
 lib/MooseX/GlobRef/Meta/Instance.pm
 lib/MooseX/GlobRef/Object.pm
 Makefile.PL
@@ -13,6 +15,7 @@ README
 t/all_tests.t
 t/cover.sh
 t/test.pl
+t/tlib/MooseX/GlobRef/Meta/Class/Trait/GlobRefTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassTest.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceImmutableTest.pm
