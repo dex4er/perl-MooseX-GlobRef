@@ -22,7 +22,7 @@ use Scalar::Util 'reftype';
 };
 
 
-sub test_MooseX_GlobRef_Meta_Class___isa {
+sub test___isa {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::ClassImmutableTest::Test1->new;
     assert_not_null($obj);
@@ -30,7 +30,7 @@ sub test_MooseX_GlobRef_Meta_Class___isa {
     assert_equals('HASH', reftype($obj));
 };
 
-sub test_MooseX_GlobRef_Meta_Class_accessor {
+sub test_accessor {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::ClassImmutableTest::Test1->new(field => $$);
     assert_not_null($obj);

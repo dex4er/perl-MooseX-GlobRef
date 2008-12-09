@@ -26,7 +26,7 @@ use Scalar::Util 'reftype';
 };
 
 
-sub test_MooseX_GlobRef_Object___isa {
+sub test___isa {
     my $self = shift;
     my $obj = MooseX::GlobRef::ObjectTest::Test1->new;
     assert_not_null($obj);
@@ -35,7 +35,7 @@ sub test_MooseX_GlobRef_Object___isa {
     assert_equals('HASH', reftype(${*$obj}));
 };
 
-sub test_MooseX_GlobRef_Object__moose {
+sub test_accessor {
     my $self = shift;
     my $obj = MooseX::GlobRef::ObjectTest::Test1->new;
     assert_not_null($obj);
@@ -47,7 +47,7 @@ sub test_MooseX_GlobRef_Object__moose {
     assert_equals('default', $obj->field);
 };
 
-sub test_MooseX_GlobRef_Object__moc {
+sub test_slot_moc {
     my $self = shift;
     my $mi = MooseX::GlobRef::ObjectTest::Test1->meta->get_meta_instance;
     assert_not_null($mi);
@@ -65,7 +65,7 @@ sub test_MooseX_GlobRef_Object__moc {
     assert_true(! $mi->is_slot_initialized($obj, 'field'));
 };
 
-sub test_MooseX_GlobRef_Object__moc_inline {
+sub test_slot_moc_inline {
     my $self = shift;
     my $mi = MooseX::GlobRef::ObjectTest::Test1->meta->get_meta_instance;
     assert_not_null($mi);
@@ -94,7 +94,7 @@ sub test_MooseX_GlobRef_Object__moc_inline {
     assert_true(! eval $code_is_slot_initialized);
 };
 
-sub test_MooseX_GlobRef_Object__weak {
+sub test_weak_field {
     my $self = shift;
     my $mi = MooseX::GlobRef::ObjectTest::Test1->meta->get_meta_instance;
     assert_not_null($mi);

@@ -19,7 +19,7 @@ use Scalar::Util 'reftype';
 };
 
 
-sub test_MooseX_GlobRef_Meta_Instance___isa {
+sub test___isa {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::InstanceTest::Test1->new;
     assert_not_null($obj);
@@ -28,7 +28,7 @@ sub test_MooseX_GlobRef_Meta_Instance___isa {
     assert_equals('HASH', reftype(${*$obj}));
 };
 
-sub test_MooseX_GlobRef_Meta_Instance_accessor {
+sub test_accessor {
     my $self = shift;
     my $obj = MooseX::GlobRef::Meta::InstanceTest::Test1->new(field => $$);
     assert_not_null($obj);
