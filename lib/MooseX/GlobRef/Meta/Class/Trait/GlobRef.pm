@@ -1,8 +1,6 @@
 #!/usr/bin/perl -c
 
 package MooseX::GlobRef::Meta::Class::Trait::GlobRef;
-use 5.006;
-our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -21,8 +19,14 @@ Moose object in glob reference.
 
 =cut
 
+use 5.006;
+use strict;
+use warnings;
+
+our $VERSION = 0.03;
 
 use Moose::Role;
+
 
 use constant instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
 
@@ -30,9 +34,15 @@ use constant instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
 1;
 
 
+__END__
+
 =head1 METHODS
 
+=over
+
 =item instance_metaclass
+
+=back
 
 Returns the class name of the instance metaclass.
 

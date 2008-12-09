@@ -1,8 +1,6 @@
 #!/usr/bin/perl -c
 
 package MooseX::GlobRef::Meta::Instance;
-use 5.006;
-our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -48,9 +46,12 @@ Notice, that "use metaclass" have to be before "use Moose".
 
 =cut
 
-
+use 5.006;
 use strict;
 use warnings;
+
+our $VERSION = 0.03;
+
 
 use parent 'Moose::Meta::Instance';
 
@@ -82,19 +83,19 @@ sub set_slot_value {
 
 sub deinitialize_slot {
     my ( $self, $instance, $slot_name ) = @_;
-    delete ${*$instance}->{$slot_name};
+    return delete ${*$instance}->{$slot_name};
 };
 
 
 sub is_slot_initialized {
     my ($self, $instance, $slot_name) = @_;
-    exists ${*$instance}->{$slot_name} ? 1 : 0;
+    return exists ${*$instance}->{$slot_name} ? 1 : 0;
 };
 
 
 sub weaken_slot_value {
     my ($self, $instance, $slot_name) = @_;
-    Scalar::Util::weaken ${*$instance}->{$slot_name};
+    return Scalar::Util::weaken ${*$instance}->{$slot_name};
 };
 
 

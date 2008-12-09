@@ -15,6 +15,7 @@ README
 t/all_tests.t
 t/cover.sh
 t/test.pl
+t/tlib/MooseX/GlobRef/Meta/Class/Trait/GlobRefImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/Class/Trait/GlobRefTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassTest.pm
@@ -22,5 +23,8 @@ t/tlib/MooseX/GlobRef/Meta/InstanceImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceTest.pm
 t/tlib/MooseX/GlobRef/ObjectImmutableTest.pm
 t/tlib/MooseX/GlobRef/ObjectTest.pm
+xt/kwalitee.t
+xt/perlcritic.t
+xt/perlcriticrc
 xt/pod.t
 xt/pod_coverage.t

@@ -1,8 +1,6 @@
 #!/usr/bin/perl -c
 
 package MooseX::GlobRef::Meta::Class;
-use 5.006;
-our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -15,9 +13,12 @@ other purposes and funcionality.
 
 =cut
 
-
+use 5.006;
 use strict;
 use warnings;
+
+our $VERSION = 0.03;
+
 
 use parent 'Moose::Meta::Class';
 

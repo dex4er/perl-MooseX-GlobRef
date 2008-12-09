@@ -1,8 +1,6 @@
 #!/usr/bin/perl -c
 
 package MooseX::GlobRef::Object;
-use 5.006;
-our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -49,6 +47,12 @@ You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
 more customised configuration.
 
 =cut
+
+use 5.006;
+use strict;
+use warnings;
+
+our $VERSION = '0.03';
 
 
 use metaclass 'MooseX::GlobRef::Meta::Class' => (

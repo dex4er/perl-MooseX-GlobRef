@@ -1,8 +1,6 @@
 #!/usr/bin/perl -c
 
 package Moose::Meta::Class::Custom::Trait::GlobRef;
-use 5.006;
-our $VERSION = 0.03;
 
 =head1 NAME 
 
@@ -21,6 +19,12 @@ Moose object in glob reference.
 
 =cut
 
+use 5.006;
+use strict;
+use warnings;
+
+our $VERSION = 0.03;
+
 
 use constant register_implementation => 'MooseX::GlobRef::Meta::Class::Trait::GlobRef';
 
@@ -28,11 +32,17 @@ use constant register_implementation => 'MooseX::GlobRef::Meta::Class::Trait::Gl
 1;
 
 
+__END__
+
 =head1 METHODS
+
+=over
 
 =item register_implementation
 
 Return the real class name of the trait.
+
+=back
 
 =head1 SEE ALSO
 
