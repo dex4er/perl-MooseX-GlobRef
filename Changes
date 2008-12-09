@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------
-0.03 | Piotr Roszatycki <dexter@debian.org> | 2008-12-08
+0.03 | Piotr Roszatycki <dexter@debian.org> | 2008-12-09
 
 New:
 
@@ -10,6 +10,7 @@ New:
 
 Changes:
 
+* Requires Moose >= 0.56 because of class trait.
 * Requires parent module instead base.
 * Build requires Test::Assert.
 

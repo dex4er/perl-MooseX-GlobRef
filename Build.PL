@@ -12,7 +12,7 @@ my $build = Module::Build->new(
     license => 'perl',
     requires => {
         'perl'               => 5.006,
-        'Moose'              => 0,
+        'Moose'              => 0.56,
         'parent'             => 0,
     },
     optional => {
