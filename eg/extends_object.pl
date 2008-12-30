@@ -6,7 +6,7 @@ use Moose;
 
 extends 'MooseX::GlobRef::Object';
 
-has 'filename' => (
+has 'file' => (
     is       => 'ro',
     isa      => 'Str',
     required => 1,
@@ -15,7 +15,7 @@ has 'filename' => (
 sub open {
     my $fh      = shift;
     my $hashref = ${*$fh};
-    open $fh, $hashref->{filename} or confess "cannot open";
+    open $fh, $hashref->{file} or confess "cannot open";
     return $fh;
 }
 
@@ -24,10 +24,10 @@ sub getlines {
     return readline $fh;
 }
 
-my $io = My::IO->new( filename => '/etc/passwd' );
+my $io = My::IO->new( file => $ARGV[0] || die "Usage: $0 *file*\n" );
 
 print "::::::::::::::\n";
-print $io->filename, "\n";
+print $io->file, "\n";
 print "::::::::::::::\n";
 $io->open;
 print $io->getlines;

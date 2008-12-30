@@ -14,12 +14,12 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
   extends 'MooseX::GlobRef::Object';
 
-  has 'filename' => ( is => 'ro', isa => 'Str', required => 1 );
+  has 'file' => ( is => 'ro', isa => 'Str', required => 1 );
 
   sub open {
     my $fh = shift;
     my $hashref = ${*$fh};
-    open $fh, $hashref->{filename} or confess "cannot open";
+    open $fh, $hashref->{file} or confess "cannot open";
     return $fh;
   }
 
@@ -28,9 +28,9 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
     return readline $fh;
   }
 
-  my $io = My::IO->new( filename=>'/etc/passwd' );
+  my $io = My::IO->new( file => '/etc/passwd' );
   print "::::::::::::::\n";
-  print $io->filename, "\n";
+  print $io->file, "\n";
   print "::::::::::::::\n";
   $io->open;
   print $io->getlines;
