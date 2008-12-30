@@ -1,4 +1,9 @@
 ------------------------------------------------------------------------
+0.04 | Piotr Roszatycki <dexter@debian.org> | 2008-12-30
+
+* Cannot be implemented as class trait.
+
+------------------------------------------------------------------------
 0.03 | Piotr Roszatycki <dexter@debian.org> | 2008-12-09
 
 New:
