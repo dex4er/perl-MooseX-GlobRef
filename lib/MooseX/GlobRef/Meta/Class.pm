@@ -9,7 +9,7 @@ MooseX::GlobRef::Meta::Class - Metaclass for globref objects
 =head1 DESCRIPTION
 
 This metaclass is used by L<MooseX::GlobRef::Object> base class and it has no
-other purposes and funcionality.
+other purposes and functionality.
 
 =cut
 

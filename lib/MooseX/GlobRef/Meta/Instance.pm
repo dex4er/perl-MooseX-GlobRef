@@ -146,7 +146,7 @@ L<Moose::Meta::Instance>
 
 =item inline_slot_access
 
-The methods overrided by this class.
+The methods overridden by this class.
 
 =back
 
