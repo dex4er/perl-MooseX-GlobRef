@@ -19,8 +19,7 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 
   sub open {
     my $fh = shift;
-    my $hashref = \%{*$fh};
-    open $fh, $hashref->{file} or confess "cannot open";
+    open $fh, $fh->file or confess "cannot open";
     return $fh;
   };
 
@@ -156,7 +155,7 @@ L<MooseX::GlobRef::Object>, L<Moose::Meta::Instance>, L<Moose>, L<metaclass>.
 
 =head1 AUTHOR
 
-Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
+Piotr Roszatycki <dexter@cpan.org>
 
 =head1 LICENSE
 

@@ -33,3 +33,4 @@ xt/pod_syntax.t
 Makefile.PL
 README
 META.yml
+LICENSE

@@ -18,8 +18,7 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
   sub open {
     my $fh = shift;
-    my $hashref = \%{*$fh};
-    open $fh, $hashref->{file} or confess "cannot open";
+    open $fh, $fh->file or confess "cannot open";
     return $fh;
   }
 
@@ -41,7 +40,7 @@ This meta-policy allows to store Moose object in glob reference or file
 handle.  The class attributes will be stored in hash slot associated with glob
 reference.  It allows to create a Moose version of L<IO::Handle>.
 
-The elements of hash can be accessed with following expression:
+The elements of hash can be accessed directly with following expression:
 
   my $hashref = \%{*$self};
   $hashref->{key} = $value;
@@ -91,7 +90,7 @@ L<Moose>, L<metaclass>.
 
 =head1 AUTHOR
 
-Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
+Piotr Roszatycki <dexter@cpan.org>
 
 =head1 LICENSE
 
