@@ -36,7 +36,6 @@ sub test___isa {
     assert_not_null($obj);
     assert_true($obj->isa('MooseX::GlobRef::ObjectImmutableTest::Test1'));
     assert_equals('GLOB', reftype($obj));
-    assert_equals('HASH', reftype(${*$obj}));
 };
 
 sub test_accessor {

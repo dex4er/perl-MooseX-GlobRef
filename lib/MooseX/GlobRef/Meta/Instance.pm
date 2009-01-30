@@ -39,7 +39,7 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 =head1 DESCRIPTION
 
 This instance metaclass allows to store Moose object in glob reference or
-file handle.  It can be used directly with B<metaclass> pragma or with
+file handle.  It can be used directly with C<metaclass> pragma or with
 L<MooseX::GlobRef::Object> base class.
 
 Notice, that "use metaclass" have to be before "use Moose".
@@ -62,8 +62,8 @@ sub create_instance {
     # create anonymous filehandler
     select select my $fh;
 
-    # associate hashref with globref
-    ${*$fh} = {};
+    # associate hash slot with globref
+    %{*$fh} = ();
 
     return bless $fh => $self->associated_metaclass->name;
 };
@@ -71,43 +71,43 @@ sub create_instance {
 
 sub get_slot_value {
     my ($self, $instance, $slot_name) = @_;
-    return ${*$instance}->{$slot_name};
+    return do { \%{*$instance} }->{$slot_name};
 };
 
 
 sub set_slot_value {
     my ($self, $instance, $slot_name, $value) = @_;
-    return ${*$instance}->{$slot_name} = $value;
+    return do { \%{*$instance} }->{$slot_name} = $value;
 };
 
 
 sub deinitialize_slot {
     my ( $self, $instance, $slot_name ) = @_;
-    return delete ${*$instance}->{$slot_name};
+    return delete do { \%{*$instance} }->{$slot_name};
 };
 
 
 sub is_slot_initialized {
     my ($self, $instance, $slot_name) = @_;
-    return exists ${*$instance}->{$slot_name} ? 1 : 0;
+    return exists do { \%{*$instance} }->{$slot_name} ? 1 : 0;
 };
 
 
 sub weaken_slot_value {
     my ($self, $instance, $slot_name) = @_;
-    return Scalar::Util::weaken ${*$instance}->{$slot_name};
+    return Scalar::Util::weaken do { \%{*$instance} }->{$slot_name};
 };
 
 
 sub inline_create_instance {
     my ($self, $class_variable) = @_;
-    return 'select select my $fh; ${*$fh} = {}; bless $fh => ' . $class_variable;
+    return 'select select my $fh; %{*$fh} = (); bless $fh => ' . $class_variable;
 };
 
 
 sub inline_slot_access {
     my ($self, $instance, $slot_name) = @_;
-    return sprintf '${*{%s}}->{%s}', $instance, $slot_name;
+    return 'do { \%{*{' . $instance . '}} }->{' . $slot_name . '}';
 };
 
 
@@ -160,7 +160,7 @@ Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
 
 =head1 LICENSE
 
-Copyright (C) 2007, 2008 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
