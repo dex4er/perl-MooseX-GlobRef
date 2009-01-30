@@ -18,7 +18,7 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
   sub open {
     my $fh = shift;
-    my $hashref = ${*$fh};
+    my $hashref = \%{*$fh};
     open $fh, $hashref->{file} or confess "cannot open";
     return $fh;
   }
@@ -38,10 +38,13 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 =head1 DESCRIPTION
 
 This meta-policy allows to store Moose object in glob reference or file
-handle.  The class attributes will be stored in anonymous hash associated
-with glob reference.  It allows to create a Moose version of L<IO::Handle>.
+handle.  The class attributes will be stored in hash slot associated with glob
+reference.  It allows to create a Moose version of L<IO::Handle>.
 
-The elements of hash can be accessed with C<${*$self}-E<gt>{key}> expression.
+The elements of hash can be accessed with following expression:
+
+  my $hashref = \%{*$self};
+  $hashref->{key} = $value;
 
 You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
 more customised configuration.
@@ -52,7 +55,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = 0.04;
+our $VERSION = '0.05';
 
 
 use metaclass 'MooseX::GlobRef::Meta::Class' => (
@@ -92,7 +95,7 @@ Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
 
 =head1 LICENSE
 
-Copyright (C) 2007, 2008 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

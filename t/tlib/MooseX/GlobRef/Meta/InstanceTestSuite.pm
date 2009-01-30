@@ -1,8 +1,7 @@
 package MooseX::GlobRef::Meta::InstanceTestSuite;
 
-use parent 'Test::Unit::TestSuite';
-
 use Test::Unit::Lite;
+use parent 'Test::Unit::TestSuite';
     
 sub suite {
     my $class = shift;

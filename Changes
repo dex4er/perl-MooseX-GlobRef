@@ -1,4 +1,10 @@
 ------------------------------------------------------------------------
+0.05 | Piotr Roszatycki <dexter@debian.org> | 2009-01-30
+
+* Attributes are stored in hash slot of glob reference.  Previously they were
+  stored in hash reference pointed by scalar slot.
+
+------------------------------------------------------------------------
 0.04 | Piotr Roszatycki <dexter@debian.org> | 2008-12-30
 
 * Cannot be implemented as class trait.

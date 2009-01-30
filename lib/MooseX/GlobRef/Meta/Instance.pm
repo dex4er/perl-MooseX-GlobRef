@@ -19,7 +19,7 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 
   sub open {
     my $fh = shift;
-    my $hashref = ${*$fh};
+    my $hashref = \%{*$fh};
     open $fh, $hashref->{file} or confess "cannot open";
     return $fh;
   };
@@ -50,7 +50,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = 0.04;
+our $VERSION = '0.05';
 
 
 use parent 'Moose::Meta::Instance';

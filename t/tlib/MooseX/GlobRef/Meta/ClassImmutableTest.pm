@@ -1,6 +1,8 @@
 package MooseX::GlobRef::Meta::ClassImmutableTest;
 
+use Test::Unit::Lite;
 use parent 'Test::Unit::TestCase';
+
 use Test::Assert ':all';
 
 use Scalar::Util 'reftype';
