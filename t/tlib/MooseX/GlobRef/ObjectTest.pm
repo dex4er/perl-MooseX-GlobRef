@@ -25,6 +25,16 @@ use Scalar::Util 'reftype';
     has weak_field => (
         is      => 'rw',
     );
+
+    sub new {
+        my $class = shift;
+        my $self = $class->SUPER::new(@_);
+        my $scalarref = ${*$self};
+        $$scalarref = 'SCALAR';
+        my $arrayref = \@{*$self}; 
+        @$arrayref = ('ARRAY'); 
+        return $self;
+    }; 
 };
 
 
