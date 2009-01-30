@@ -1,4 +1,6 @@
-#!/usr/bin/perl -I../lib
+#!/usr/bin/perl
+
+use lib 'lib', '../lib';
 
 package My::IO;
 

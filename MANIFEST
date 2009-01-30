@@ -21,7 +21,7 @@ t/tlib/MooseX/GlobRef/ObjectTest.pm
 t/tlib/MooseX/GlobRef/ObjectTestSuite.pm
 xt/consistent_version_numbers.t
 xt/copyright.t
-xt/cover.sh
+xt/cover.pl
 xt/distribution.t
 xt/kwalitee.t
 xt/minimumversion.t
