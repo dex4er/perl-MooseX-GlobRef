@@ -18,6 +18,11 @@
   Should be:
 
   my $obj = MooseX::GlobRef::Object->new;
+  do { \%{*$obj} }->{attr} = 42;
+
+  or:
+
+  my $obj = MooseX::GlobRef::Object->new;
   my $hashref = \%{*$obj};
   $hashref->{attr} = 42;
 
