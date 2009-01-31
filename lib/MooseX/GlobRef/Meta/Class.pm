@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Class;
 
-=head1 NAME 
+=head1 NAME
 
 MooseX::GlobRef::Meta::Class - Metaclass for globref objects
 
@@ -28,13 +28,45 @@ use parent 'Moose::Meta::Class';
 
 __END__
 
-=head1 BASE CLASSES
+=head1 INHERITANCE
 
 =over 2
 
 =item *
 
-L<Moose::Meta::Class>
+extends L<Moose::Meta::Class>
+
+=over 2
+
+=item   *
+
+extends L<Class::MOP::Class>
+
+=over 2
+
+=item     *
+
+extends L<Class::MOP::Module>
+
+=over 2
+
+=item       *
+
+extends L<Class::MOP::Package>
+
+=over 2
+
+=item         *
+
+extends L<Class::MOP::Object>
+
+=back
+
+=back
+
+=back
+
+=back
 
 =back
 

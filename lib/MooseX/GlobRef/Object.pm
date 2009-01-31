@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Object;
 
-=head1 NAME 
+=head1 NAME
 
 MooseX::GlobRef::Object - Store a Moose object in glob reference
 
@@ -33,17 +33,25 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
   print "::::::::::::::\n";
   $io->open;
   print $io->getlines;
-  
+
 =head1 DESCRIPTION
 
-This meta-policy allows to store Moose object in glob reference or file
+This meta-policy allows to store Moose object in glob reference of file
 handle.  The class attributes will be stored in hash slot associated with glob
 reference.  It allows to create a Moose version of L<IO::Handle>.
 
-The elements of hash can be accessed directly with following expression:
+The attributes can be accessed directly with following expression:
 
   my $hashref = \%{*$self};
-  $hashref->{key} = $value;
+  print $hashref->{key};
+
+or shorter:
+
+  print do { \%{*$self} }->{key};
+
+but the standard accessors should be used instead:
+
+  print $self->key;
 
 You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
 more customised configuration.
@@ -71,13 +79,13 @@ __END__
 
 =for readme stop
 
-=head1 BASE CLASSES
+=head1 INHERITANCE
 
 =over 2
 
 =item *
 
-L<Moose::Object>
+extends L<Moose::Object>
 
 =back
 

@@ -2,7 +2,7 @@
 
 package MooseX::GlobRef::Meta::Instance;
 
-=head1 NAME 
+=head1 NAME
 
 MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 
@@ -10,8 +10,9 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 
   package My::IO;
 
-  use metaclass 'Moose::Meta::Class' =>
-      instance_metaclass => 'MooseX::GlobRef::Meta::Instance';
+  use metaclass 'Moose::Meta::Class' => (
+      instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
+  );
 
   use Moose;
 
@@ -34,14 +35,14 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
   print "::::::::::::::\n";
   $io->open;
   print $io->getlines;
-  
+
 =head1 DESCRIPTION
 
-This instance metaclass allows to store Moose object in glob reference or
+This instance metaclass allows to store Moose object in glob reference of
 file handle.  It can be used directly with C<metaclass> pragma or with
 L<MooseX::GlobRef::Object> base class.
 
-Notice, that "use metaclass" have to be before "use Moose".
+Notice, that C<use metaclass> have to be before C<use Moose>.
 
 =cut
 
@@ -58,13 +59,13 @@ use parent 'Moose::Meta::Instance';
 sub create_instance {
     my ($self) = @_;
 
-    # create anonymous filehandler
-    select select my $fh;
+    # create anonymous file handle
+    select select my $instance;
 
-    # associate hash slot with globref
-    %{*$fh} = ();
+    # initialize hash slot of file handle
+    %{*$instance} = ();
 
-    return bless $fh => $self->associated_metaclass->name;
+    return bless $instance => $self->associated_metaclass->name;
 };
 
 
@@ -88,7 +89,7 @@ sub deinitialize_slot {
 
 sub is_slot_initialized {
     my ($self, $instance, $slot_name) = @_;
-    return exists do { \%{*$instance} }->{$slot_name} ? 1 : 0;
+    return exists do { \%{*$instance} }->{$slot_name};
 };
 
 
@@ -115,13 +116,29 @@ sub inline_slot_access {
 
 __END__
 
-=head1 BASE CLASSES
+=head1 INHERITANCE
 
 =over 2
 
 =item *
 
-L<Moose::Meta::Instance>
+extends L<Moose::Meta::Instance>
+
+=over 2
+
+=item   *
+
+extends L<Class::MOP::Instance>
+
+=over 2
+
+=item     *
+
+extends L<Class::MOP::Object>
+
+=back
+
+=back
 
 =back
 
