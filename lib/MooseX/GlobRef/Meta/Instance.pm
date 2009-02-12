@@ -39,7 +39,7 @@ MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
 =head1 DESCRIPTION
 
 This instance metaclass allows to store Moose object in glob reference of
-file handle.  It can be used directly with C<metaclass> pragma or with
+file handle.  It can be used directly with L<metaclass> pragma or with
 L<MooseX::GlobRef::Object> base class.
 
 Notice, that C<use metaclass> have to be before C<use Moose>.
@@ -50,71 +50,8 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
-
-use parent 'Moose::Meta::Instance';
-
-
-sub create_instance {
-    my ($self) = @_;
-
-    # create anonymous file handle
-    select select my $instance;
-
-    # initialize hash slot of file handle
-    %{*$instance} = ();
-
-    return bless $instance => $self->associated_metaclass->name;
-};
-
-
-sub get_slot_value {
-    my ($self, $instance, $slot_name) = @_;
-    return do { \%{*$instance} }->{$slot_name};
-};
-
-
-sub set_slot_value {
-    my ($self, $instance, $slot_name, $value) = @_;
-    return do { \%{*$instance} }->{$slot_name} = $value;
-};
-
-
-sub deinitialize_slot {
-    my ( $self, $instance, $slot_name ) = @_;
-    return delete do { \%{*$instance} }->{$slot_name};
-};
-
-
-sub is_slot_initialized {
-    my ($self, $instance, $slot_name) = @_;
-    return exists do { \%{*$instance} }->{$slot_name};
-};
-
-
-sub weaken_slot_value {
-    my ($self, $instance, $slot_name) = @_;
-    return Scalar::Util::weaken do { \%{*$instance} }->{$slot_name};
-};
-
-
-sub inline_create_instance {
-    my ($self, $class_variable) = @_;
-    return 'select select my $fh; %{*$fh} = (); bless $fh => ' . $class_variable;
-};
-
-
-sub inline_slot_access {
-    my ($self, $instance, $slot_name) = @_;
-    return 'do { \%{*{' . $instance . '}} }->{' . $slot_name . '}';
-};
-
-
-1;
-
-
-__END__
 
 =head1 INHERITANCE
 
@@ -142,29 +79,113 @@ extends L<Class::MOP::Object>
 
 =back
 
+=cut
+
+use parent 'Moose::Meta::Instance';
+
+
+
+# Use weaken
+use Scalar::Util ();
+
+
 =head1 METHODS
 
 =over
 
 =item create_instance
 
+=cut
+
+sub create_instance {
+    my ($self) = @_;
+
+    # create anonymous file handle
+    select select my $fh;
+
+    # initialize hash slot of file handle
+    %{*$fh} = ();
+
+    return bless $fh => $self->associated_metaclass->name;
+};
+
+
 =item get_slot_value
+
+=cut
+
+sub get_slot_value {
+    my ($self, $instance, $slot_name) = @_;
+    return *$instance->{$slot_name};
+};
+
 
 =item set_slot_value
 
+=cut
+
+sub set_slot_value {
+    my ($self, $instance, $slot_name, $value) = @_;
+    return *$instance->{$slot_name} = $value;
+};
+
+
 =item deinitialize_slot
+
+=cut
+
+sub deinitialize_slot {
+    my ( $self, $instance, $slot_name ) = @_;
+    return delete *$instance->{$slot_name};
+};
+
 
 =item is_slot_initialized
 
+=cut
+
+sub is_slot_initialized {
+    my ($self, $instance, $slot_name) = @_;
+    return exists *$instance->{$slot_name};
+};
+
+
 =item weaken_slot_value
 
+=cut
+
+sub weaken_slot_value {
+    my ($self, $instance, $slot_name) = @_;
+    return Scalar::Util::weaken *$instance->{$slot_name};
+};
+
+
 =item inline_create_instance
+
+=cut
+
+sub inline_create_instance {
+    my ($self, $class_variable) = @_;
+    return 'select select my $fh; %{*$fh} = (); bless $fh => ' . $class_variable;
+};
+
 
 =item inline_slot_access
 
 The methods overridden by this class.
 
 =back
+
+=cut
+
+sub inline_slot_access {
+    my ($self, $instance, $slot_name) = @_;
+    return '*{' . $instance . '}->{' . $slot_name . '}';
+};
+
+
+1;
+
 
 =head1 SEE ALSO
 

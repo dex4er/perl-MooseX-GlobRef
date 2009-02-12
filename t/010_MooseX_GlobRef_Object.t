@@ -15,6 +15,11 @@ BEGIN {
 
 use Test::Unit::Lite;
 
-local $SIG{__WARN__} = sub { require Carp; Carp::confess("Warning: $_[0]") };
+local $SIG{__WARN__} = sub { require Carp; Carp::confess("Warning: ", @_) };
 
-Test::Unit::HarnessUnit->new->start('MooseX::GlobRef::Meta::ClassTestSuite');
+my $suite = __FILE__;
+$suite =~ s/.*\d{3}_(.*)\.t/$1/ or die;
+$suite =~ s/_/::/g;
+$suite .= "TestSuite";
+
+Test::Unit::HarnessUnit->new->start($suite);

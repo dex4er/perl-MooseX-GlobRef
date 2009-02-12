@@ -1,4 +1,13 @@
 ------------------------------------------------------------------------
+0.06 | Piotr Roszatycki <dexter@debian.org> | 2009-02-12
+
+Changes:
+
+* Now works "use metaclass 'MooseX::GlobRef::Meta::Class'".
+* Use simpler "*$self->{attr}" syntax for accessing attributes stored in hash
+  slot of glob reference.
+
+------------------------------------------------------------------------
 0.05 | Piotr Roszatycki <dexter@debian.org> | 2009-01-31
 
 * Attributes are stored in hash slot of glob reference.  Previously they were

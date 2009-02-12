@@ -47,7 +47,7 @@ The attributes can be accessed directly with following expression:
 
 or shorter:
 
-  print do { \%{*$self} }->{key};
+  print *$self->{key};
 
 but the standard accessors should be used instead:
 
@@ -62,22 +62,13 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 use metaclass 'MooseX::GlobRef::Meta::Class' => (
-    instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
+#    instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
 );
 
-use parent 'Moose::Object';
-
-
-1;
-
-
-__END__
-
-=for readme stop
 
 =head1 INHERITANCE
 
@@ -88,6 +79,16 @@ __END__
 extends L<Moose::Object>
 
 =back
+
+=cut
+
+use parent 'Moose::Object';
+
+
+1;
+
+
+=for readme stop
 
 =head1 SEE ALSO
 

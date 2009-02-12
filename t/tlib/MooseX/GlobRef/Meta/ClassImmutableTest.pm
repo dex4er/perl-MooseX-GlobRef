@@ -11,9 +11,6 @@ use Scalar::Util 'reftype';
 {
     package MooseX::GlobRef::Meta::ClassImmutableTest::Test1;
 
-    # Use just class metaclass without instance metaclass, so original hashref
-    # object will be used.
-
     use metaclass 'MooseX::GlobRef::Meta::Class';
 
     use Moose;
@@ -29,7 +26,7 @@ sub test___isa {
     my $obj = MooseX::GlobRef::Meta::ClassImmutableTest::Test1->new;
     assert_not_null($obj);
     assert_true($obj->isa('MooseX::GlobRef::Meta::ClassImmutableTest::Test1'));
-    assert_equals('HASH', reftype($obj));
+    assert_equals('GLOB', reftype($obj));
 };
 
 sub test_accessor {

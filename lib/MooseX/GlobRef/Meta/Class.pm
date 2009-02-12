@@ -6,10 +6,38 @@ package MooseX::GlobRef::Meta::Class;
 
 MooseX::GlobRef::Meta::Class - Metaclass for globref objects
 
+=head1 SYNOPSIS
+
+  package My::IO;
+
+  use metaclass 'MooseX::GlobRef::Meta::Class';
+
+  use Moose;
+
+  has 'file' => ( is => 'ro', isa => 'Str', required => 1 );
+
+  sub open {
+    my $fh = shift;
+    open $fh, $fh->file or confess "cannot open";
+    return $fh;
+  };
+
+  sub getlines {
+    my $fh = shift;
+    return readline $fh;
+  };
+
+  my $io = My::IO->new( file => '/etc/passwd' );
+  print "::::::::::::::\n";
+  print $io->file, "\n";
+  print "::::::::::::::\n";
+  $io->open;
+  print $io->getlines;
+
 =head1 DESCRIPTION
 
-This metaclass is used by L<MooseX::GlobRef::Object> base class and it has no
-other purposes and functionality.
+This metaclass is used by L<MooseX::GlobRef::Object> base class and it uses
+L<MooseX::GlobRef::Meta::Instance> as instance metaclass.
 
 =cut
 
@@ -17,16 +45,11 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
-use parent 'Moose::Meta::Class';
+use MooseX::GlobRef::Meta::Instance;
 
-
-1;
-
-
-__END__
 
 =head1 INHERITANCE
 
@@ -70,9 +93,28 @@ extends L<Class::MOP::Object>
 
 =back
 
+=cut
+
+use parent 'Moose::Meta::Class';
+
+
+sub initialize {
+    my $class = shift;
+    my $pkg   = shift;
+    $class->SUPER::initialize(
+        $pkg,
+        instance_metaclass => 'MooseX::GlobRef::Meta::Instance',
+        @_,
+    );
+};
+
+
+1;
+
+
 =head1 SEE ALSO
 
-L<MooseX::GlobRef::Object>, L<Moose::Meta::Object>, L<Moose>, L<metaclass>.
+L<MooseX::GlobRef::Object>, L<Moose::Meta::Class>, L<Moose>, L<metaclass>.
 
 =head1 AUTHOR
 
