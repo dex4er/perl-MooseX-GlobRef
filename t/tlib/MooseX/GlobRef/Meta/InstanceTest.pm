@@ -1,15 +1,11 @@
 package MooseX::GlobRef::Meta::InstanceTest;
 
-use Test::Unit::Lite;
-use parent 'Test::Unit::TestCase';
+use parent 'MooseX::GlobRef::ObjectBaseTest';
 
-use Test::Assert ':all';
-
-use Scalar::Util 'reftype';
-
+use constant test_class => (__PACKAGE__ . '::TestClass');
 
 {
-    package MooseX::GlobRef::Meta::InstanceTest::Test1;
+    package MooseX::GlobRef::Meta::InstanceTest::TestClass;
 
     use metaclass 'Moose::Meta::Class' => (
         instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
@@ -17,26 +13,28 @@ use Scalar::Util 'reftype';
 
     use Moose;
 
-    has field => ( is => 'rw' );
-};
+    has field => (
+        is      => 'rw',
+        clearer => 'clear_field',
+        default => 'default',
+        lazy    => 1,
+    );
 
+    has weak_field => (
+        is      => 'rw',
+    );
 
-sub test___isa {
-    my $self = shift;
-    my $obj = MooseX::GlobRef::Meta::InstanceTest::Test1->new;
-    assert_not_null($obj);
-    assert_true($obj->isa('MooseX::GlobRef::Meta::InstanceTest::Test1'));
-    assert_equals('GLOB', reftype($obj));
-};
+    sub BUILD {
+        my $self = shift;
 
-sub test_accessor {
-    my $self = shift;
-    my $obj = MooseX::GlobRef::Meta::InstanceTest::Test1->new(field => $$);
-    assert_not_null($obj);
-    assert_true($obj->isa('MooseX::GlobRef::Meta::InstanceTest::Test1'));
-    assert_equals($$, $obj->field);
-    assert_equals(1, $obj->field(1));
-    assert_equals(1, $obj->field);
+        # fill some other slots in globref
+        my $scalarref = ${*$self};
+        $$scalarref = 'SCALAR';
+        my $arrayref = \@{*$self};
+        @$arrayref = ('ARRAY');
+
+        return $self;
+    };
 };
 
 1;

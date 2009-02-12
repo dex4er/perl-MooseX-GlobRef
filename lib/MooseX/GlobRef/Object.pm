@@ -65,9 +65,7 @@ use warnings;
 our $VERSION = '0.06';
 
 
-use metaclass 'MooseX::GlobRef::Meta::Class' => (
-#    instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
-);
+use metaclass 'MooseX::GlobRef::Meta::Class';
 
 
 =head1 INHERITANCE
