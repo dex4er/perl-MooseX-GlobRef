@@ -98,10 +98,24 @@ extends L<Class::MOP::Object>
 use parent 'Moose::Meta::Class';
 
 
+## no critic (RequireArgUnpacking)
+
+=head1 METHODS
+
+=over
+
+=item initialize
+
+The methods overridden by this class.
+
+=back
+
+=cut
+
 sub initialize {
     my $class = shift;
     my $pkg   = shift;
-    $class->SUPER::initialize(
+    return $class->SUPER::initialize(
         $pkg,
         instance_metaclass => 'MooseX::GlobRef::Meta::Instance',
         @_,

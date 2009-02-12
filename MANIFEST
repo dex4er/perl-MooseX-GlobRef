@@ -12,9 +12,9 @@ MANIFEST
 MANIFEST.SKIP
 META.yml
 README
-t/010_extends_object.t
-t/020_metaclass.t
-t/030_metaclass_instance.t
+t/010_MooseX_GlobRef_Object.t
+t/020_MooseX_GlobRef_Meta_Class.t
+t/030_MooseX_GlobRef_Meta_Instance.t
 t/test.pl
 t/tlib/MooseX/GlobRef/Meta/ClassImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/ClassTest.pm
@@ -22,6 +22,7 @@ t/tlib/MooseX/GlobRef/Meta/ClassTestSuite.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceImmutableTest.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceTest.pm
 t/tlib/MooseX/GlobRef/Meta/InstanceTestSuite.pm
+t/tlib/MooseX/GlobRef/ObjectBaseTest.pm
 t/tlib/MooseX/GlobRef/ObjectImmutableTest.pm
 t/tlib/MooseX/GlobRef/ObjectTest.pm
 t/tlib/MooseX/GlobRef/ObjectTestSuite.pm
