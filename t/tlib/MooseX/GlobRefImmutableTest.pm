@@ -9,7 +9,7 @@ use constant test_class => (__PACKAGE__ . '::TestClass');
 
     use Moose;
 
-    use 'MooseX::GlobRef';
+    use MooseX::GlobRef;
 
     has field => (
         is      => 'rw',

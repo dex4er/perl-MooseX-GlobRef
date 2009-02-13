@@ -1,4 +1,4 @@
-package MooseX::GlobRef::GlobRefBaseTest;
+package MooseX::GlobRefBaseTest;
 
 use Test::Unit::Lite;
 use parent 'Test::Unit::TestCase';
@@ -105,6 +105,19 @@ sub test_weak_field {
            $mi->weaken_slot_value($obj, 'weak_field');
     };
     assert_null($obj->weak_field);
+};
+
+sub test_dump {
+    my $self = shift;
+    my $test_class = $self->test_class;
+
+    my $obj = $test_class->new;
+    assert_not_null($obj);
+    assert_isa($test_class, $obj);
+    $obj->field('VALUE');
+    my @dump = $obj->dump;
+    assert_equals( 2, scalar @dump );
+    assert_matches( qr/$test_class.*VALUE/s, join '', @dump );
 };
 
 1;
