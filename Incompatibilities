@@ -18,7 +18,7 @@
   Should be:
 
   my $obj = MooseX::GlobRef::Object->new;
-  do { \%{*$obj} }->{attr} = 42;
+  *$obj->{attr} = 42;
 
   or:
 

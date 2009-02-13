@@ -1,4 +1,15 @@
 ------------------------------------------------------------------------
+0.07 | Piotr Roszatycki <dexter@debian.org> | 2009-02-13
+
+Changes:
+
+* Package is renamed to MooseX::GlobRef and reimplemented as a role.
+
+* MooseX::GlobRef::Role::Meta::Instance:
+  * New method "clone_instance".
+  * Method "inline_create_instance" returns a do {} block.
+
+------------------------------------------------------------------------
 0.06 | Piotr Roszatycki <dexter@debian.org> | 2009-02-12
 
 Changes:

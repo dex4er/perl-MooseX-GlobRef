@@ -1,15 +1,15 @@
-package MooseX::GlobRef::ObjectImmutableTest;
+package MooseX::GlobRefImmutableTest;
 
 use parent 'MooseX::GlobRefBaseTest';
 
 use constant test_class => (__PACKAGE__ . '::TestClass');
 
 {
-    package MooseX::GlobRef::ObjectImmutableTest::TestClass;
+    package MooseX::GlobRefImmutableTest::TestClass;
 
     use Moose;
 
-    extends 'MooseX::GlobRef::Object';
+    use 'MooseX::GlobRef';
 
     has field => (
         is      => 'rw',

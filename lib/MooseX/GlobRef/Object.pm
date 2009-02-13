@@ -36,25 +36,8 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
 =head1 DESCRIPTION
 
-This meta-policy allows to store Moose object in glob reference of file
-handle.  The class attributes will be stored in hash slot associated with glob
-reference.  It allows to create a Moose version of L<IO::Handle>.
-
-The attributes can be accessed directly with following expression:
-
-  my $hashref = \%{*$self};
-  print $hashref->{key};
-
-or shorter:
-
-  print *$self->{key};
-
-but the standard accessors should be used instead:
-
-  print $self->key;
-
-You can use L<MooseX::GlobRef::Meta::Instance> metaclass directly if you need
-more customised configuration.
+This class extends L<Moose::Object> and is provided only for backward
+compatibility. You should use L<MooseX::GlobRef> instead.
 
 =cut
 
@@ -62,10 +45,11 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
+use Moose;
 
-use metaclass 'MooseX::GlobRef::Meta::Class';
+use MooseX::GlobRef;
 
 
 =head1 INHERITANCE
@@ -76,11 +60,19 @@ use metaclass 'MooseX::GlobRef::Meta::Class';
 
 extends L<Moose::Object>
 
+=cut
+
+extends 'Moose::Object';
+
+=item *
+
+with L<MooseX::GlobRef::Role::Object>
+
 =back
 
 =cut
 
-use parent 'Moose::Object';
+with 'MooseX::GlobRef::Role::Object';
 
 
 1;
@@ -90,8 +82,7 @@ use parent 'Moose::Object';
 
 =head1 SEE ALSO
 
-L<MooseX::GlobRef::Meta::Instance>, L<MooseX::GlobRef::Meta::Class>,
-L<Moose>, L<metaclass>.
+L<MooseX::GlobRef>, L<Moose::Object>.
 
 =for readme continue
 

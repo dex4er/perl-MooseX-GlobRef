@@ -1,10 +1,10 @@
 #!/usr/bin/perl -c
 
-package MooseX::GlobRef::Meta::Instance;
+package MooseX::GlobRef::Role::Meta::Instance;
 
 =head1 NAME
 
-MooseX::GlobRef::Meta::Instance - Instance metaclass for globref objects
+MooseX::GlobRef::Role::Meta::Instance - Instance metaclass for MooseX::GlobRef
 
 =head1 SYNOPSIS
 
@@ -50,39 +50,9 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
-
-=head1 INHERITANCE
-
-=over 2
-
-=item *
-
-extends L<Moose::Meta::Instance>
-
-=over 2
-
-=item   *
-
-extends L<Class::MOP::Instance>
-
-=over 2
-
-=item     *
-
-extends L<Class::MOP::Object>
-
-=back
-
-=back
-
-=back
-
-=cut
-
-use parent 'Moose::Meta::Instance';
-
+use Moose::Role;
 
 
 # Use weaken
@@ -97,7 +67,7 @@ use Scalar::Util ();
 
 =cut
 
-sub create_instance {
+override 'create_instance' => sub {
     my ($self) = @_;
 
     # create anonymous file handle
@@ -106,15 +76,31 @@ sub create_instance {
     # initialize hash slot of file handle
     %{*$fh} = ();
 
-    return bless $fh => $self->associated_metaclass->name;
+    return bless $fh => $self->_class_name;
 };
 
+
+=item clone_instance
+
+=cut
+
+override 'clone_instance' => sub {
+    my ($self, $instance) = @_;  
+
+    # create anonymous file handle
+    select select my $fh;
+
+    # initialize hash slot of file handle
+    %{*$fh} = ( %{*$fh} );
+
+    return bless $fh => $self->_class_name;
+};
 
 =item get_slot_value
 
 =cut
 
-sub get_slot_value {
+override 'get_slot_value' => sub {
     my ($self, $instance, $slot_name) = @_;
     return *$instance->{$slot_name};
 };
@@ -124,7 +110,7 @@ sub get_slot_value {
 
 =cut
 
-sub set_slot_value {
+override 'set_slot_value' => sub {
     my ($self, $instance, $slot_name, $value) = @_;
     return *$instance->{$slot_name} = $value;
 };
@@ -134,8 +120,8 @@ sub set_slot_value {
 
 =cut
 
-sub deinitialize_slot {
-    my ( $self, $instance, $slot_name ) = @_;
+override 'deinitialize_slot' => sub {
+    my ($self, $instance, $slot_name) = @_;
     return delete *$instance->{$slot_name};
 };
 
@@ -144,7 +130,7 @@ sub deinitialize_slot {
 
 =cut
 
-sub is_slot_initialized {
+override 'is_slot_initialized' => sub {
     my ($self, $instance, $slot_name) = @_;
     return exists *$instance->{$slot_name};
 };
@@ -154,7 +140,7 @@ sub is_slot_initialized {
 
 =cut
 
-sub weaken_slot_value {
+override 'weaken_slot_value' => sub {
     my ($self, $instance, $slot_name) = @_;
     return Scalar::Util::weaken *$instance->{$slot_name};
 };
@@ -164,9 +150,9 @@ sub weaken_slot_value {
 
 =cut
 
-sub inline_create_instance {
+override 'inline_create_instance' => sub {
     my ($self, $class_variable) = @_;
-    return 'select select my $fh; %{*$fh} = (); bless $fh => ' . $class_variable;
+    return 'do { select select my $fh; %{*$fh} = (); bless $fh => ' . $class_variable . ' }';
 };
 
 
@@ -178,18 +164,20 @@ The methods overridden by this class.
 
 =cut
 
-sub inline_slot_access {
+override 'inline_slot_access' => sub {
     my ($self, $instance, $slot_name) = @_;
     return '*{' . $instance . '}->{' . $slot_name . '}';
 };
 
+
+no Moose::Role;
 
 1;
 
 
 =head1 SEE ALSO
 
-L<MooseX::GlobRef::Object>, L<Moose::Meta::Instance>, L<Moose>, L<metaclass>.
+L<MooseX::GlobRef>, L<Moose::Meta::Instance>, L<Moose>.
 
 =head1 AUTHOR
 

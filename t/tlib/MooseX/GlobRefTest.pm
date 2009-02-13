@@ -1,15 +1,15 @@
-package MooseX::GlobRef::ObjectTest;
+package MooseX::GlobRefTest;
 
 use parent 'MooseX::GlobRefBaseTest';
 
 use constant test_class => (__PACKAGE__ . '::TestClass');
 
 {
-    package MooseX::GlobRef::ObjectTest::TestClass;
+    package MooseX::GlobRefTest::TestClass;
 
     use Moose;
-
-    extends 'MooseX::GlobRef::Object';
+    
+    use 'MooseX::GlobRef';
 
     has field => (
         is      => 'rw',

@@ -7,7 +7,7 @@ use warnings;
 
 use Module::Build;
 
-my $module = 'MooseX::GlobRef::Object';
+my $module = 'MooseX::GlobRef';
 
 (my $dist = $module) =~ s/::/-/g;
 
