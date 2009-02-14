@@ -1,7 +1,7 @@
 Build.PL
 Changes
-eg/extends_object.pl
-eg/use_metaclass.pl
+eg/extends_io_file.pl
+eg/my_io.pl
 Incompatibilities
 lib/MooseX/GlobRef.pm
 lib/MooseX/GlobRef/Object.pm
@@ -16,12 +16,6 @@ README
 t/010_MooseX_GlobRef.t
 t/020_MooseX_GlobRef_Object.t
 t/test.pl
-t/tlib/MooseX/GlobRef/Meta/ClassImmutableTest.pm
-t/tlib/MooseX/GlobRef/Meta/ClassTest.pm
-t/tlib/MooseX/GlobRef/Meta/ClassTestSuite.pm
-t/tlib/MooseX/GlobRef/Meta/InstanceImmutableTest.pm
-t/tlib/MooseX/GlobRef/Meta/InstanceTest.pm
-t/tlib/MooseX/GlobRef/Meta/InstanceTestSuite.pm
 t/tlib/MooseX/GlobRef/ObjectImmutableTest.pm
 t/tlib/MooseX/GlobRef/ObjectTest.pm
 t/tlib/MooseX/GlobRef/ObjectTestSuite.pm

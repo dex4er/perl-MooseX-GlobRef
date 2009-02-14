@@ -45,14 +45,22 @@ sub test_slot_moc {
     my $obj = $mi->create_instance;
     assert_not_null($obj);
     assert_isa($test_class, $obj);
+    assert_true(! $mi->is_slot_initialized($obj, 'field'));
+    assert_null($mi->get_slot_value($obj, 'field'));
+    assert_equals(1, $mi->set_slot_value($obj, 'field', 1));
+    assert_true($mi->is_slot_initialized($obj, 'field'));
+    assert_equals(1, $mi->get_slot_value($obj, 'field'));
+    assert_true($mi->deinitialize_slot($obj, 'field'));
     assert_null($mi->get_slot_value($obj, 'field'));
     assert_true(! $mi->is_slot_initialized($obj, 'field'));
     assert_equals(1, $mi->set_slot_value($obj, 'field', 1));
     assert_equals(1, $mi->get_slot_value($obj, 'field'));
-    assert_true($mi->is_slot_initialized($obj, 'field'));
-    assert_true($mi->deinitialize_slot($obj, 'field'));
-    assert_null($mi->get_slot_value($obj, 'field'));
-    assert_true(! $mi->is_slot_initialized($obj, 'field'));
+
+    my $cloned = $mi->clone_instance( $obj );
+    assert_not_null($cloned);
+    assert_str_not_equals($obj, $cloned);
+    assert_true($mi->is_slot_initialized($cloned, 'field'));
+    assert_equals(1, $mi->get_slot_value($cloned, 'field'));
 };
 
 sub test_slot_moc_inline {
@@ -118,6 +126,8 @@ sub test_dump {
     my @dump = $obj->dump;
     assert_equals( 2, scalar @dump );
     assert_matches( qr/$test_class.*VALUE/s, join '', @dump );
+    my $dump = $obj->dump;
+    assert_matches( qr/$test_class.*VALUE/s, $dump );
 };
 
 1;

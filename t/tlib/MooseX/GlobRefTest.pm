@@ -8,7 +8,7 @@ use constant test_class => (__PACKAGE__ . '::TestClass');
     package MooseX::GlobRefTest::TestClass;
 
     use Moose;
-    
+
     use MooseX::GlobRef;
 
     has field => (

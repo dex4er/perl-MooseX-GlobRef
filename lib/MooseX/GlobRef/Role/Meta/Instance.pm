@@ -8,41 +8,16 @@ MooseX::GlobRef::Role::Meta::Instance - Instance metaclass for MooseX::GlobRef
 
 =head1 SYNOPSIS
 
-  package My::IO;
-
-  use metaclass 'Moose::Meta::Class' => (
-      instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
+  Moose::Util::MetaRole::apply_metaclass_roles(
+      for_class => $caller,
+      instance_metaclass_roles =>
+          [ 'MooseX::GlobRef::Role::Meta::Instance' ],
   );
-
-  use Moose;
-
-  has 'file' => ( is => 'ro', isa => 'Str', required => 1 );
-
-  sub open {
-    my $fh = shift;
-    open $fh, $fh->file or confess "cannot open";
-    return $fh;
-  };
-
-  sub getlines {
-    my $fh = shift;
-    return readline $fh;
-  };
-
-  my $io = My::IO->new( file => '/etc/passwd' );
-  print "::::::::::::::\n";
-  print $io->file, "\n";
-  print "::::::::::::::\n";
-  $io->open;
-  print $io->getlines;
 
 =head1 DESCRIPTION
 
 This instance metaclass allows to store Moose object in glob reference of
-file handle.  It can be used directly with L<metaclass> pragma or with
-L<MooseX::GlobRef::Object> base class.
-
-Notice, that C<use metaclass> have to be before C<use Moose>.
+file handle.  It is applied by L<MooseX::GlobRef>.
 
 =cut
 
@@ -63,7 +38,7 @@ use Scalar::Util ();
 
 =over
 
-=item create_instance
+=item create_instance(I<>) : Object
 
 =cut
 
@@ -80,23 +55,23 @@ override 'create_instance' => sub {
 };
 
 
-=item clone_instance
+=item clone_instance( I<instance> : Object ) : Object
 
 =cut
 
 override 'clone_instance' => sub {
-    my ($self, $instance) = @_;  
+    my ($self, $instance) = @_;
 
     # create anonymous file handle
     select select my $fh;
 
     # initialize hash slot of file handle
-    %{*$fh} = ( %{*$fh} );
+    %{*$fh} = ( %{*$instance} );
 
     return bless $fh => $self->_class_name;
 };
 
-=item get_slot_value
+=item get_slot_value( I<instance> : Object, I<slot_name> : Str ) : Any
 
 =cut
 
@@ -106,7 +81,7 @@ override 'get_slot_value' => sub {
 };
 
 
-=item set_slot_value
+=item set_slot_value( I<instance> : Object, I<slot_name> : Str, I<value> : Any ) : Any
 
 =cut
 
@@ -116,7 +91,7 @@ override 'set_slot_value' => sub {
 };
 
 
-=item deinitialize_slot
+=item deinitialize_slot( I<instance> : Object, I<slot_name> : Str ) : Any
 
 =cut
 
@@ -126,7 +101,7 @@ override 'deinitialize_slot' => sub {
 };
 
 
-=item is_slot_initialized
+=item is_slot_initialized( I<instance> : Object, I<slot_name> : Str ) : Bool
 
 =cut
 
@@ -136,7 +111,7 @@ override 'is_slot_initialized' => sub {
 };
 
 
-=item weaken_slot_value
+=item weaken_slot_value( I<instance> : Object, I<slot_name> : Str )
 
 =cut
 
@@ -146,7 +121,7 @@ override 'weaken_slot_value' => sub {
 };
 
 
-=item inline_create_instance
+=item inline_create_instance( I<class_variable> : Str ) : Str
 
 =cut
 
@@ -156,7 +131,7 @@ override 'inline_create_instance' => sub {
 };
 
 
-=item inline_slot_access
+=item inline_slot_access( I<instance_variable> : Str, I<slot_name> : Str ) : Str
 
 The methods overridden by this class.
 
@@ -165,8 +140,8 @@ The methods overridden by this class.
 =cut
 
 override 'inline_slot_access' => sub {
-    my ($self, $instance, $slot_name) = @_;
-    return '*{' . $instance . '}->{' . $slot_name . '}';
+    my ($self, $instance_variable, $slot_name) = @_;
+    return '*{' . $instance_variable . '}->{' . $slot_name . '}';
 };
 
 
@@ -185,7 +160,7 @@ Piotr Roszatycki <dexter@cpan.org>
 
 =head1 LICENSE
 
-Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

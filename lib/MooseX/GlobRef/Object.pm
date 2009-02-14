@@ -8,36 +8,19 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 
 =head1 SYNOPSIS
 
-  package My::IO;
+  package My::IO::File;
 
   use Moose;
 
-  extends 'MooseX::GlobRef::Object';
-
-  has 'file' => ( is => 'ro', isa => 'Str', required => 1 );
-
-  sub open {
-    my $fh = shift;
-    open $fh, $fh->file or confess "cannot open";
-    return $fh;
-  }
-
-  sub getlines {
-    my $fh = shift;
-    return readline $fh;
-  }
-
-  my $io = My::IO->new( file => '/etc/passwd' );
-  print "::::::::::::::\n";
-  print $io->file, "\n";
-  print "::::::::::::::\n";
-  $io->open;
-  print $io->getlines;
+  extends 'MooseX::GlobRef::Object', 'IO::File';
 
 =head1 DESCRIPTION
 
-This class extends L<Moose::Object> and is provided only for backward
-compatibility. You should use L<MooseX::GlobRef> instead.
+This class extends L<Moose::Object> with L<MooseX::GlobRef::Role::Object>.
+
+This class is obsoleted by L<MooseX::GlobRef::Role::Object> and left for
+backward compatibility reason. The L<MooseX::GlobRef> package should be used
+instead.
 
 =cut
 
@@ -92,7 +75,7 @@ Piotr Roszatycki <dexter@cpan.org>
 
 =head1 LICENSE
 
-Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright (C) 2007, 2008, 2009 by Piotr Roszatycki E<lt>dexter@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

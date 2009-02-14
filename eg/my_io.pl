@@ -4,17 +4,19 @@ use lib 'lib', '../lib';
 
 package My::IO;
 
-use metaclass 'Moose::Meta::Class' => (
-    instance_metaclass => 'MooseX::GlobRef::Meta::Instance'
-);
-
 use Moose;
+use MooseX::GlobRef;
 
 has 'file' => (
     is       => 'ro',
     isa      => 'Str',
     required => 1,
 );
+
+sub BUILD {
+    my $self = shift;
+    $self->open;
+};
 
 sub open {
     my $fh = shift;
@@ -32,5 +34,4 @@ my $io = My::IO->new( file => $ARGV[0] || die "Usage: $0 *file*\n" );
 print "::::::::::::::\n";
 print $io->file, "\n";
 print "::::::::::::::\n";
-$io->open;
 print $io->getlines;
