@@ -52,6 +52,8 @@ but the standard accessors should be used instead:
 
   print $self->key;
 
+=for readme stop
+
 =cut
 
 use 5.006;
@@ -107,8 +109,6 @@ sub init_meta {
 
 1;
 
-
-=for readme stop
 
 =head1 SEE ALSO
 

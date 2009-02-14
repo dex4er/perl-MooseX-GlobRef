@@ -89,13 +89,9 @@ no Moose::Role;
 1;
 
 
-=for readme stop
-
 =head1 SEE ALSO
 
 L<MooseX::GlobRef>, L<Moose::Object>, L<Moose::Role>.
-
-=for readme continue
 
 =head1 AUTHOR
 
