@@ -64,7 +64,7 @@ use Moose::Role;
 
 =over
 
-=item dump( I<maxdepth> : Int = 1 ) : Array|Str
+=item <<around>> dump( I<maxdepth> : Int = 1 ) : Array|Str
 
 Dumps the object itself and also a hash slot of glob reference of this object.
 It returns an array or string depended on context.
@@ -75,11 +75,12 @@ See L<Moose::Object>.
 
 =cut
 
-override 'dump' => sub {
+around 'dump' => sub {
+    my $super = shift;
     my ($self, $maxdepth) = @_;
     require Data::Dumper;
     local $Data::Dumper::Maxdepth = $maxdepth || 1;
-    my @dump = (super, Data::Dumper::Dumper( \%{*$self} ));
+    my @dump = ( $super->(@_), Data::Dumper::Dumper( \%{*$self} ) );
     return wantarray ? @dump : join('', @dump);
 };
 
