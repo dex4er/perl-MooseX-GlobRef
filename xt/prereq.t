@@ -4,5 +4,6 @@ use strict;
 use warnings;
 
 use Test::More;
+use Test::Prereq::Build;
 
-use Test::Kwalitee;
+prereq_ok();
