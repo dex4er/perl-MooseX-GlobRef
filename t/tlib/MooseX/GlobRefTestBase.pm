@@ -1,4 +1,4 @@
-package MooseX::GlobRefBaseTest;
+package MooseX::GlobRefTestBase;
 
 use Test::Unit::Lite;
 use parent 'Test::Unit::TestCase';

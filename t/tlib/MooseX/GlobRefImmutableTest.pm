@@ -1,6 +1,6 @@
 package MooseX::GlobRefImmutableTest;
 
-use parent 'MooseX::GlobRefBaseTest';
+use parent 'MooseX::GlobRefTestBase';
 
 use constant test_class => (__PACKAGE__ . '::TestClass');
 
