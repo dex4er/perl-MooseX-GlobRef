@@ -77,7 +77,7 @@ Moose::Exporter->setup_import_methods();
 
 =over
 
-=item init_meta
+=item B<init_meta>( I<args> : Hash ) : Moose::Meta::Class
 
 See L<Moose::Exporter>.
 

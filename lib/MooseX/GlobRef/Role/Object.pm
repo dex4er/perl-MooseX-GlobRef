@@ -64,7 +64,7 @@ use Moose::Role;
 
 =over
 
-=item <<around>> dump( I<maxdepth> : Int = 1 ) : Array|Str
+=item <<around>> B<dump>( I<maxdepth> : Int = 1 ) : Array|Str
 
 Dumps the object itself and also a hash slot of glob reference of this object.
 It returns an array or string depended on context.

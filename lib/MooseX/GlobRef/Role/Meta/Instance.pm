@@ -38,7 +38,7 @@ use Scalar::Util ();
 
 =over
 
-=item create_instance(I<>) : Object
+=item <<override>> B<create_instance>(I<>) : Object
 
 =cut
 
@@ -55,7 +55,7 @@ override 'create_instance' => sub {
 };
 
 
-=item clone_instance( I<instance> : Object ) : Object
+=item <<override>> B<clone_instance>( I<instance> : Object ) : Object
 
 =cut
 
@@ -71,7 +71,7 @@ override 'clone_instance' => sub {
     return bless $fh => $self->_class_name;
 };
 
-=item get_slot_value( I<instance> : Object, I<slot_name> : Str ) : Any
+=item <<override>> B<get_slot_value>( I<instance> : Object, I<slot_name> : Str ) : Any
 
 =cut
 
@@ -81,7 +81,7 @@ override 'get_slot_value' => sub {
 };
 
 
-=item set_slot_value( I<instance> : Object, I<slot_name> : Str, I<value> : Any ) : Any
+=item <<override>> B<set_slot_value>( I<instance> : Object, I<slot_name> : Str, I<value> : Any ) : Any
 
 =cut
 
@@ -91,7 +91,7 @@ override 'set_slot_value' => sub {
 };
 
 
-=item deinitialize_slot( I<instance> : Object, I<slot_name> : Str ) : Any
+=item <<override>> B<deinitialize_slot>( I<instance> : Object, I<slot_name> : Str ) : Any
 
 =cut
 
@@ -101,7 +101,7 @@ override 'deinitialize_slot' => sub {
 };
 
 
-=item is_slot_initialized( I<instance> : Object, I<slot_name> : Str ) : Bool
+=item <<override>> B<is_slot_initialized>( I<instance> : Object, I<slot_name> : Str ) : Bool
 
 =cut
 
@@ -111,7 +111,7 @@ override 'is_slot_initialized' => sub {
 };
 
 
-=item weaken_slot_value( I<instance> : Object, I<slot_name> : Str )
+=item <<override>> B<weaken_slot_value>( I<instance> : Object, I<slot_name> : Str )
 
 =cut
 
@@ -121,7 +121,7 @@ override 'weaken_slot_value' => sub {
 };
 
 
-=item inline_create_instance( I<class_variable> : Str ) : Str
+=item <<override>> B<inline_create_instance>( I<class_variable> : Str ) : Str
 
 =cut
 
@@ -131,7 +131,7 @@ override 'inline_create_instance' => sub {
 };
 
 
-=item inline_slot_access( I<instance_variable> : Str, I<slot_name> : Str ) : Str
+=item <<override>> B<inline_slot_access>( I<instance_variable> : Str, I<slot_name> : Str ) : Str
 
 The methods overridden by this class.
 
