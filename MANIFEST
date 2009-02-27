@@ -33,5 +33,4 @@ xt/pod_coverage.t
 xt/pod_spell.t
 xt/pod_spellrc
 xt/pod_syntax.t
-xt/prereq.t
 xt/signature.t
