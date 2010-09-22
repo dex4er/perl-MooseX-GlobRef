@@ -25,6 +25,7 @@ my $build = Module::Build->new(
         'Test::Unit::Lite'   => 0.12,
         'Test::Assert'       => 0,
     },
+    auto_configure_requires => 0,
     create_makefile_pl => 'traditional',
     create_readme => 1,
     create_license => 1,
@@ -38,7 +39,7 @@ my $build = Module::Build->new(
     meta_merge => {
         resources => {
             bugtracker => "http://rt.cpan.org/NoAuth/Bugs.html?Dist=$dist",
-            repository => "http://code2.0beta.co.uk/moose/svn/$dist",
+            repository => "http://github.com/dex4er/perl-$dist",
         },
     },
 );
