@@ -63,7 +63,7 @@ use warnings;
 our $VERSION = '0.0701';
 
 
-use Moose 0.56 ();
+use Moose 0.94 ();
 use Moose::Exporter;
 use Moose::Util::MetaRole;
 use MooseX::GlobRef::Role::Object;
@@ -92,14 +92,15 @@ sub init_meta {
 
     my $caller = $args{for_class};
 
-    Moose::Util::MetaRole::apply_metaclass_roles(
-        for_class => $caller,
-        instance_metaclass_roles =>
-            [ 'MooseX::GlobRef::Role::Meta::Instance' ],
+    Moose::Util::MetaRole::apply_metaroles(
+        for             => $caller,
+        class_metaroles => {
+            instance => [ 'MooseX::GlobRef::Role::Meta::Instance' ],
+        },
     );
 
     Moose::Util::MetaRole::apply_base_class_roles(
-        for_class => $caller,
+        for   => $caller,
         roles => [ 'MooseX::GlobRef::Role::Object' ],
     );
 
