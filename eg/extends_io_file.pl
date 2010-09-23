@@ -7,6 +7,8 @@ package My::IO::File;
 use Moose;
 use MooseX::GlobRef;
 
+require IO::File;   # IO:: modules are not loaded automatically by "extends"
+
 extends 'Moose::Object', 'IO::File';
 with 'MooseX::GlobRef::Role::Object';
 
