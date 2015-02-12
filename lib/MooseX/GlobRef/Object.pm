@@ -4,7 +4,7 @@ package MooseX::GlobRef::Object;
 
 =head1 NAME
 
-MooseX::GlobRef::Object - Store a Moose object in glob reference
+MooseX::GlobRef::Object - Store a Moose object in a glob reference
 
 =head1 SYNOPSIS
 
@@ -19,7 +19,7 @@ MooseX::GlobRef::Object - Store a Moose object in glob reference
 This class extends L<Moose::Object> with L<MooseX::GlobRef::Role::Object>.
 
 This class is obsoleted by L<MooseX::GlobRef::Role::Object> and left for
-backward compatibility reason. The L<MooseX::GlobRef> package should be used
+backward compatibility reasons. The L<MooseX::GlobRef> package should be used
 instead.
 
 =cut
