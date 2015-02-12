@@ -16,8 +16,8 @@ MooseX::GlobRef::Role::Meta::Instance - Instance metaclass for MooseX::GlobRef
 
 =head1 DESCRIPTION
 
-This instance metaclass allows to store Moose object in glob reference of
-file handle.  It is applied by L<MooseX::GlobRef>.
+This instance metaclass allows you to store a Moose object in a glob reference
+(file handle).  It is applied by L<MooseX::GlobRef>.
 
 =cut
 

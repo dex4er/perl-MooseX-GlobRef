@@ -4,7 +4,7 @@ package MooseX::GlobRef;
 
 =head1 NAME
 
-MooseX::GlobRef - Store a Moose object in glob reference
+MooseX::GlobRef - Store a Moose object in a glob reference
 
 =head1 SYNOPSIS
 
@@ -35,9 +35,9 @@ MooseX::GlobRef - Store a Moose object in glob reference
 
 =head1 DESCRIPTION
 
-This module allows to store Moose object in glob reference of file handle.
-The class attributes will be stored in hash slot associated with glob
-reference.  It allows to create a Moose version of L<IO::Handle>.
+This module allows you to store a Moose object in a glob reference (file
+handle). The class attributes will be stored in hash slot associated with the
+glob reference.  It allows you to create a Moose version of L<IO::Handle>.
 
 The attributes can be accessed directly with following expression:
 

@@ -43,7 +43,7 @@ MooseX::GlobRef::Role::Object - An object role for MooseX::GlobRef
 =head1 DESCRIPTION
 
 This is a role for L<Moose::Object> which is applied by L<MooseX::GlobRef>.
-It allows to store Moose object in glob reference of file handle.
+It allows you to store a Moose object in a glob reference (file handle).
 
 The L<MooseX::GlobRef> package should be used instead for Moose classes but
 the C<MooseX::GlobRef::Role::Object> can be helpful if you want to extend
@@ -67,7 +67,7 @@ use Moose::Role;
 =item <<around>> B<dump>( I<maxdepth> : Int = 1 ) : Array|Str
 
 Dumps the object itself and also a hash slot of glob reference of this object.
-It returns an array or string depended on context.
+It returns an array or string depending on context.
 
 See L<Moose::Object>.
 
