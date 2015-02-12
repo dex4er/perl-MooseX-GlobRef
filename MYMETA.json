@@ -1,0 +1,62 @@
+{
+   "abstract" : "Store a Moose object in glob reference",
+   "author" : [
+      "Piotr Roszatycki <dexter@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Module::Build version 0.421",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "MooseX-GlobRef",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::Assert" : "0",
+            "Test::Unit::Lite" : "0.12",
+            "parent" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Moose" : "0.94",
+            "perl" : "5.006"
+         }
+      }
+   },
+   "provides" : {
+      "MooseX::GlobRef" : {
+         "file" : "lib/MooseX/GlobRef.pm",
+         "version" : "0.0701"
+      },
+      "MooseX::GlobRef::Object" : {
+         "file" : "lib/MooseX/GlobRef/Object.pm",
+         "version" : "0.0701"
+      },
+      "MooseX::GlobRef::Role::Meta::Instance" : {
+         "file" : "lib/MooseX/GlobRef/Role/Meta/Instance.pm",
+         "version" : "0.0701"
+      },
+      "MooseX::GlobRef::Role::Object" : {
+         "file" : "lib/MooseX/GlobRef/Role/Object.pm",
+         "version" : "0.0701"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-GlobRef"
+      },
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://github.com/dex4er/perl-MooseX-GlobRef"
+      }
+   },
+   "version" : "0.0701"
+}
