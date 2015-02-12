@@ -14,7 +14,9 @@ Debian_CPANTS.txt
 LICENSE
 MANIFEST
 META.yml
+META.json
 MYMETA.yml
+MYMETA.json
 Makefile.PL
 README
 _build
